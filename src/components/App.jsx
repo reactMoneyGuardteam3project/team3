@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import { lazy } from 'react';
 
 import SharedLayout from './SharedLayout/SharedLayout';
-import Notify from './common/Notify/Notify';
+import Notify from './CommonFile/Notify/Notify';
 
 import RestrictedLoginPage from 'pages/LoginPage/RestrictedLoginPage';
 import RestrictedRegisterPage from 'pages/RegisterPage/RestrictedRegisterPage';

@@ -1,4 +1,4 @@
-import TransactionTableRow from 'components/TransactionTableRow/TransactionTableRow';
+import TransactionTableRow from '../TransactionTableRow/TransactionTableRow';
 import styles from './TransactionsTable.module.css';
 
 const TransactionsTable = ({ data, openDeleteModal, openEditModal }) => {
