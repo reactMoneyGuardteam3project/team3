@@ -1,7 +1,7 @@
 import styles from './LoginForm.module.css';
-import Logo from 'components/common/Logo/Logo';
+import Logo from '../CommonFile/Logo/Logo';
 import { useNavigate } from 'react-router-dom';
-import FormButton from 'components/common/FormButton/FormButton';
+import FormButton from '../CommonFile/FormButton/FormButton';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';

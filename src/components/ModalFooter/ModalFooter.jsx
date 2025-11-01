@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import styles from './ModalFooter.module.css';
 import { useMediaQuery } from 'react-responsive';
-import Logo from 'components/common/Logo/Logo';
-import FormButton from 'components/common/FormButton/FormButton';
+import Logo from '../CommonFile/Logo/Logo';
+import FormButton from '../CommonFile/FormButton/FormButton';
 import 'animate.css';
 
 const ModalFooter = ({ closeModal }) => {
@@ -36,56 +36,56 @@ const ModalFooter = ({ closeModal }) => {
         <ul className={styles.teamList}>
           <li>
             <a
-              href="https://github.com/CristinaBubu"
+              href="https://github.com/Gizo-coder"
               target="_blank"
               rel="noreferrer"
             >
-              Cristina Bubu
+              Gizem Demirci
             </a>
           </li>
           <li>
             <a
-              href="https://github.com/roxananecsoi"
+              href="https://github.com/hayrunnisaicik"
               target="_blank"
               rel="noreferrer"
             >
-              Roxana Necsoi
+              Nisa İcik
             </a>
           </li>
           <li>
             <a
-              href="https://github.com/Dragos0129"
+              href="https://github.com/Emreayvz"
               target="_blank"
               rel="noreferrer"
             >
-              Dragos Baba
+              Emre Ayvaz
             </a>
           </li>
           <li>
             <a
-              href="https://github.com/NicuBac"
+              href="https://github.com/DoganDmrbs"
               target="_blank"
               rel="noreferrer"
             >
-              Baciu Nicolae
+              Doğan Demirbaş 
             </a>
           </li>
           <li>
             <a
-              href="https://github.com/Ridl123"
+              href="https://github.com/ayktshnbs"
               target="_blank"
               rel="noreferrer"
             >
-              Prudel Richard-Iulian
+              Aykut Şahinbaş
             </a>
           </li>
           <li>
             <a
-              href="https://github.com/RedesCristian"
+              href="https://github.com/MiracSengul"
               target="_blank"
               rel="noreferrer"
             >
-              Redes Cristian
+              Miraç Şengül
             </a>
           </li>
         </ul>

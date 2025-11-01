@@ -1,7 +1,7 @@
 import styles from './RegistrationForm.module.css';
 import { useNavigate } from 'react-router-dom';
-import Logo from 'components/common/Logo/Logo';
-import FormButton from 'components/common/FormButton/FormButton';
+import Logo from '../CommonFile/Logo/Logo';
+import FormButton from '../CommonFile/FormButton/FormButton';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -10,7 +10,7 @@ import { register } from '../../redux/auth/operations';
 
 import icons from '../../images/icons/sprite.svg';
 import { useState } from 'react';
-import PasswordStrength from 'components/PasswordStrength/PasswordStrength';
+import PasswordStrength from '../PasswordStrength/PasswordStrength';
 
 const RegistrationForm = () => {
   const [password, setPassword] = useState('');

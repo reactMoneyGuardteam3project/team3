@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import styles from './ModalEditTransaction.module.css';
-import EditTransactionForm from 'components/EditTransactionForm/EditTransactionForm';
+import EditTransactionForm from '../EditTransactionForm/EditTransactionForm';
 
 const ModalEditTransactionNew = ({ closeModal }) => {
   useEffect(() => {

@@ -1,5 +1,5 @@
 .bgImg {
-    background-image: url('../../../images//backgrounds/register-bg-t.jpg');
+    background-image: url('../../../images/backgrounds/background-register-tablet.jpg');
 
     background-size: cover;
     background-attachment: fixed;
@@ -62,7 +62,7 @@
 
 @media screen and (min-width: 1280px) {
     .bgImg {
-        background-image: url('../../../images//backgrounds/register-bg-d.jpg');
+        background-image: url('../../../images/backgrounds/background-register.jpg');
     }
 
     .contentImg img {

@@ -1,8 +1,8 @@
 import styles from './LogOutModal.module.css';
 import { useMediaQuery } from 'react-responsive';
 
-import FormButton from 'components/common/FormButton/FormButton';
-import Logo from 'components/common/Logo/Logo';
+import FormButton from '../CommonFile/FormButton/FormButton';
+import Logo from '../CommonFile/Logo/Logo';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
