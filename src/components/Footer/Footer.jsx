@@ -3,7 +3,7 @@ import styles from './Footer.module.css';
 
 import icons from '../../images/icons/sprite.svg';
 import { createPortal } from 'react-dom';
-import ModalFooter from 'components/ModalFooter/ModalFooter';
+import ModalFooter from '../ModalFooter/ModalFooter';
 
 const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,13 +13,12 @@ const Footer = () => {
       <footer className={styles.footer}>
         <div>
           <p>
-            Developed with
+            Developed with by
             <span className={styles.icon}>
               <svg width="14px" height="12.88px">
                 <use href={`${icons}#icon-heart`}></use>
               </svg>
-            </span>
-            by
+            </span>            
             <span
               className={styles.students}
               onClick={() => setIsModalOpen(true)}

@@ -1,4 +1,4 @@
-import TransactionItem from 'components/TransactionItem/TransactionItem';
+import TransactionItem from '../TransactionItem/TransactionItem';
 import styles from './TransactionsList.module.css';
 
 const TransactionsList = ({ data, openDeleteModal, openEditModal }) => {

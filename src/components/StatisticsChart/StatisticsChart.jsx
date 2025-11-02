@@ -11,7 +11,7 @@ import {
   selectTransactionsSummary,
 } from '../../redux/transactions/selectors';
 import { getTrasactionCategoryColor } from '../../constants/TransactionConstants';
-import LoadingSpinner from 'components/common/LoadingSpinner/Loader';
+import LoadingSpinner from '../CommonFile/LoadingSpinner/Loader';
 
 const StatisticsChart = () => {
   const isLoading = useSelector(selectIsLoading);

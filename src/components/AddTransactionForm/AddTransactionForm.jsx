@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './AddTransactionForm.module.css';
-import FormButton from 'components/common/FormButton/FormButton';
+import FormButton from '../CommonFile/FormButton/FormButton';
 import icons from '../../images/icons/sprite.svg';
 import { useMediaQuery } from 'react-responsive';
 

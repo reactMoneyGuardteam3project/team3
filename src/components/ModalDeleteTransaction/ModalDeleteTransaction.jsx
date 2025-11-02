@@ -1,8 +1,8 @@
 import styles from './ModalDeleteTransaction.module.css';
 import { useMediaQuery } from 'react-responsive';
 
-import FormButton from 'components/common/FormButton/FormButton';
-import Logo from 'components/common/Logo/Logo';
+import FormButton from '../CommonFile/FormButton/FormButton';
+import Logo from '../CommonFile/Logo/Logo';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deteleTransaction } from '../../redux/transactions/operations';
