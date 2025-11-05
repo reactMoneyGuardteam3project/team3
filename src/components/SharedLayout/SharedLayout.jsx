@@ -1,15 +1,15 @@
-import styles from './SharedLayout.module.css';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import Balance from '../Balance/Balance';
-import { useMediaQuery } from 'react-responsive';
 import Currency from '../Currency/Currency';
 import Footer from '../Footer/Footer';
-import { Suspense } from 'react';
+import styles from './SharedLayout.module.css';
 
 const SharedLayout = () => {
-  const screenCondition = useMediaQuery({ query: '(min-width: 768px)' });
+  const isTabletOrLarger = useMediaQuery({ query: '(min-width: 768px)' });
 
   return (
     <>
@@ -20,12 +20,14 @@ const SharedLayout = () => {
           <div className={styles.sharedSectionElements}>
             <div className={styles.navAndBalanceContainer}>
               <Navigation />
-              {screenCondition && <Balance />}
+              {isTabletOrLarger && <Balance />}
             </div>
 
-            {screenCondition && <Currency />}
+            {isTabletOrLarger && <Currency />}
           </div>
-          <Suspense>
+
+          {/* Suspense ile lazy yükleme */}
+          <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
         </div>

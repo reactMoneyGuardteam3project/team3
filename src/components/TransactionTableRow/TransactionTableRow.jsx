@@ -5,8 +5,8 @@ import {
 import icons from '../../images/icons/sprite.svg';
 import styles from './TransactionTableRow.module.css';
 import {
-  setTrasactionForUpdate,
-  setTrasactionIdForDelete,
+  setTransactionForUpdate,
+  setTransactionIdForDelete,
 } from '../../redux/transactions/slice';
 import { useDispatch } from 'react-redux';
 
@@ -21,12 +21,12 @@ const TransactionTableRow = ({
 
   const handleDeleteClick = () => {
     openDeleteModal();
-    dispatch(setTrasactionIdForDelete(transaction.id));
+    dispatch(setTransactionIdForDelete(transaction.id));
   };
 
   const handleEditClick = () => {
     openEditModal();
-    dispatch(setTrasactionForUpdate({ ...transaction }));
+    dispatch(setTransactionForUpdate({ ...transaction }));
   };
 
   return (

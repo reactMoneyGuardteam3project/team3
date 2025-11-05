@@ -15,7 +15,6 @@ import PasswordStrength from '../PasswordStrength/PasswordStrength';
 const RegistrationForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -53,13 +52,14 @@ const RegistrationForm = () => {
     )
       .unwrap()
       .then(() => {
-        // navigate('/dashboard');
+        navigate('/dashboard'); // ✅ kayıt sonrası yönlendirme
       })
       .catch(error => {
-        setStatus({ success: false, error: error });
+        setStatus({ success: false, error });
         setSubmitting(false);
       });
   };
+
   return (
     <div className={styles.registerForm}>
       <Formik
@@ -69,26 +69,27 @@ const RegistrationForm = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <Logo variant={'formLogo'} />
+            <Logo variant="formLogo" />
 
+            {/* Name */}
             <div className={styles.inputField}>
               <svg className={styles.inputIcon}>
                 <use href={`${icons}#icon-username`}></use>
               </svg>
-
               <Field type="text" name="name" placeholder="Name" />
               <ErrorMessage name="name" component="div" />
             </div>
 
+            {/* Email */}
             <div className={styles.inputField}>
               <svg className={styles.inputIcon}>
                 <use href={`${icons}#icon-email`}></use>
               </svg>
-
               <Field type="email" name="email" placeholder="E-mail" />
               <ErrorMessage name="email" component="div" />
             </div>
 
+            {/* Password */}
             <div className={styles.inputField}>
               <svg className={styles.inputIcon}>
                 <use href={`${icons}#icon-password`}></use>
@@ -98,9 +99,9 @@ const RegistrationForm = () => {
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
-                onKeyUp={e => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
               />
-              {password.length > 0 && <PasswordStrength password={password} />}
+              {!!password && <PasswordStrength password={password} />}
               <ErrorMessage name="password" component="div" />
 
               {password.length > 0 && (
@@ -113,6 +114,7 @@ const RegistrationForm = () => {
               )}
             </div>
 
+            {/* Confirm Password */}
             <div className={styles.inputField}>
               <svg className={styles.inputIcon}>
                 <use href={`${icons}#icon-password`}></use>
@@ -122,7 +124,7 @@ const RegistrationForm = () => {
                 type={showConfirmPassword ? 'text' : 'password'}
                 name="confirmPassword"
                 placeholder="Confirm password"
-                onKeyUp={e => setConfirmPassword(e.target.value)}
+                onChange={e => setConfirmPassword(e.target.value)}
               />
               <ErrorMessage name="confirmPassword" component="div" />
 
@@ -136,17 +138,18 @@ const RegistrationForm = () => {
               )}
             </div>
 
+            {/* Buttons */}
             <div className={styles.buttonsWrapper}>
               <FormButton
-                type={'submit'}
-                text={'register'}
-                variant={'multiColorButtton'}
+                type="submit"
+                text="Register"
+                variant="multiColorButton"
                 isDisabled={isSubmitting}
               />
               <FormButton
-                type={'button'}
-                text={'Log in'}
-                variant={'whiteButtton'}
+                type="button"
+                text="Log in"
+                variant="whiteButton"
                 handlerFunction={() => navigate('/')}
               />
             </div>

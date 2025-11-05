@@ -14,8 +14,8 @@ const selectFilteredCategories = createSelector(
   }
 )
 
-const selectTrasactionIdForDelete = (state) =>
-  state.transactions.trasactionIdForDelete
+const selectTransactionIdForDelete = (state) =>
+  state.transactions.transactionIdForDelete
 
 const selectTransactionForUpdate = (state) =>
   state.transactions.transactionForUpdate
@@ -25,7 +25,7 @@ const selectIsLoading = (state) => state.transactions.isLoading
 export {
   selectAllTransactions,
   selectTransactionsSummary,
-  selectTrasactionIdForDelete,
+  selectTransactionIdForDelete,
   selectTransactionForUpdate,
   selectFilteredCategories,
   selectIsLoading,

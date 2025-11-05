@@ -6,27 +6,26 @@ const ModalAddTransactionNew = ({ closeModal }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
-    const addCloseEvent = event => {
-      event.key === 'Escape' && closeModal();
+    const handleKeyDown = event => {
+      if (event.key === 'Escape') closeModal();
     };
-    document.addEventListener('keydown', addCloseEvent);
+
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.body.style.overflow = 'auto';
-      document.removeEventListener('keydown', addCloseEvent);
+      document.removeEventListener('keydown', handleKeyDown);
     };
-  });
+  }, [closeModal]); // ✅ dependency eklendi
 
-  const closeOnClickOutside = event => {
-    event.target === event.currentTarget && closeModal();
+  const handleBackdropClick = event => {
+    if (event.target === event.currentTarget) closeModal();
   };
 
   return (
-    <>
-      <div className={styles.addModal} onClick={closeOnClickOutside}>
-        <AddTransactionForm closeModal={closeModal} />
-      </div>
-    </>
+    <div className={styles.addModal} onClick={handleBackdropClick}>
+      <AddTransactionForm closeModal={closeModal} />
+    </div>
   );
 };
 

@@ -1,24 +1,32 @@
 import axios from 'axios';
 
-// Ensure baseURL is taken from CRA env var REACT_APP_API_BASE_URL
+// Set the base URL for axios from environment variables or fallback
 const setAxiosBaseURL = () => {
   axios.defaults.baseURL =
     process.env.REACT_APP_API_BASE_URL || 'https://wallet.b.goit.study';
 };
 
+// Set the Authorization header for axios
 const setAxiosHeader = (tokenReceived) => {
-  try {
-    const savedDataLocal = JSON.parse(localStorage.getItem('persist:auth'));
-    const savedToken =
-      savedDataLocal?.token === 'null' ? null : savedDataLocal?.token?.slice(1, -1);
+  let token = tokenReceived;
 
-    axios.defaults.headers.common.Authorization = tokenReceived || savedToken || '';
-  } catch (error) {
-    // fallback if localStorage parsing fails
-    axios.defaults.headers.common.Authorization = tokenReceived || '';
+  if (!token) {
+    try {
+      const savedDataLocal = JSON.parse(localStorage.getItem('persist:auth'));
+      const savedToken = savedDataLocal?.token;
+      if (savedToken && savedToken !== 'null') {
+        // Remove quotes added by redux-persist stringification
+        token = savedToken.slice(1, -1);
+      }
+    } catch (error) {
+      console.error('Error parsing token from localStorage:', error);
+    }
   }
+
+  axios.defaults.headers.common.Authorization = token || '';
 };
 
+// Clear the Authorization header
 const clearAxiosHeader = () => {
   delete axios.defaults.headers.common.Authorization;
 };
