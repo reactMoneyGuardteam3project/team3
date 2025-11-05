@@ -44,11 +44,12 @@ div.navigation {
 }
 
 .navLink.active .linkIcon .homeIcon,
-.navLink.active .linkIcon .statisticsIcon,
+.navLink.active .linkIcon .statisticIcon,
 .navLink.active .linkIcon .currencyIcon {
     fill: rgba(255, 255, 255, 1);
 }
 
+/* Masaüstü ve tablet görünümü */
 @media screen and (min-width: 768px) {
     div.navigation {
         flex-direction: column;
@@ -79,7 +80,6 @@ div.navigation {
         font-weight: 700;
         font-size: 20px;
         transition: all 0.5s ease 0s;
-
         cursor: not-allowed;
     }
 
@@ -89,18 +89,72 @@ div.navigation {
     }
 
     .navLink .linkIcon {
-        width: 18px;
-        height: 18px;
+        width: 50px;
+        height: 50px;
         border-radius: 2px;
     }
 
     .linkIcon .homeIcon {
-        width: 12px;
-        height: 11px;
+        width: 32px;
+        height: 30px;
     }
 
-    .linkIcon .statisticsIcon {
-        width: 14px;
-        height: 8px;
+    .linkIcon .statisticIcon {
+        width: 32px;
+        height: 30px;
+    }
+}
+
+/* Mobil görünüm */
+@media screen and (max-width: 767px) {
+    div.navigation {
+        display: flex;
+        flex-direction: row;
+        gap: 38px;
+        align-self: center;
+    }
+   
+    .navLink .linkText {
+        display: none;
+    }
+
+    .navLink .linkIcon {
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 6px;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;       
+        
+    }
+
+    .navLink.active .linkIcon {
+        background-color: rgba(74, 86, 226, 1);
+        box-shadow: 0px 3px 10px 0px rgba(74, 86, 226, 0.5);
+    }
+
+    .linkIcon .homeIcon {
+        width: 31px;
+        height: 30px;
+        fill: #3c2371;     
+    }
+
+    .linkIcon .statisticIcon {
+        width: 31px;
+        height: 30px;
+        fill: #3c2371;
+    }
+
+    .linkIcon .currencyIcon {
+        width: 31px;
+        height: 30px;
+        fill: #3c2371;
+    }
+
+    .navLink.active .linkIcon .homeIcon,
+    .navLink.active .linkIcon .statisticIcon,
+    .navLink.active .linkIcon .currencyIcon {
+        fill: rgba(255, 255, 255, 1);
     }
 }
