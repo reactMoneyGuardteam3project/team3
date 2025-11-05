@@ -4,14 +4,17 @@
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
 
 ## Takım Üyeleri
 
--
--
--
+- Gizem Demirci
+- Nisa İcik
+- Emre Ayvaz
+- Doğan Demirbaş
+- Aykut Şahinbaş
+- Miraç Şengül
 
 ## Geliştirme Kuralları
 

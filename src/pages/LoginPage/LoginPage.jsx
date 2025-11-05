@@ -2,8 +2,8 @@ import styles from './LoginPage.module.css';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectIsLoading } from '../../redux/auth/selectors';
-import LoginForm from 'components/LoginForm/LoginForm';
-import LoadingScreen from 'components/common/LoadingScreen/LoadingScreen';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import LoadingScreen from '../../components/CommonFile/LoadingScreen/LoadingScreen';
 
 const LoginPage = () => {
   const isLoading = useSelector(selectIsLoading);

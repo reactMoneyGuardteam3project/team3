@@ -1,7 +1,7 @@
 import styles from './StatisticsPage.module.css';
 import StatisticsDashboard from '../../components/StatisticsDashboard/StatisticsDashboard';
 import StatisticsTable from '../../components/StatisticsTable/StatisticsTable';
-import StatisticsChart from 'components/StatisticsChart/StatisticsChart';
+import StatisticsChart from '../../components/StatisticsChart/StatisticsChart';
 
 const StatisticsPage = () => {
   return (

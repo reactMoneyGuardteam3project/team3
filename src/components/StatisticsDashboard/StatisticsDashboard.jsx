@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import styles from './StatisticsDashboard.module.css';
 import { useDispatch } from 'react-redux';
-import { Months_OPTIONS, YEARS_OPTIONS } from 'constants/TransactionConstants';
+import { Months_OPTIONS, YEARS_OPTIONS } from '../../constants/TransactionConstants';
 import { fetchTransactionsSummary } from '../../redux/transactions/operations';
 
 const StatisticsDashboard = () => {

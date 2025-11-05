@@ -2,7 +2,7 @@
   min-width: 90dvw;
   min-height: 100dvh;
 
-  background-image: url('../../images/backgrounds/register&login-bg-m.jpg');
+  background-image: url('../../images/backgrounds/background-mobile.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -18,7 +18,7 @@
 
 @media screen and (min-width: 768px) {
   .loginPage {
-    background-image: url('../../images/backgrounds/login-bg-t.jpg');
+    background-image: url('../../images/backgrounds/background-login-tablet.jpg');
     padding-top: 75px;
     padding-bottom: 75px;
   }
@@ -26,6 +26,6 @@
 
 @media screen and (min-width: 1280px) {
   .loginPage {
-    background-image: url('../../images/backgrounds/login-bg-d.jpg');
+    background-image: url('../../images/backgrounds/background-login.jpg');
   }
 }
