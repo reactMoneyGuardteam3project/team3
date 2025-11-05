@@ -1,50 +1,36 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
-import styles from './StatisticsDashboard.module.css';
+import { useEffect, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { Months_OPTIONS, YEARS_OPTIONS } from '../../constants/TransactionConstants';
+import styles from './StatisticsDashboard.module.css';
+import {
+  Months_OPTIONS,
+  YEARS_OPTIONS,
+} from '../../constants/TransactionConstants';
 import { fetchTransactionsSummary } from '../../redux/transactions/operations';
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();
 
-  const [month, setMonth] = useState(new Date().getMonth() + 1); // Luna curentă
-  const [year, setYear] = useState(new Date().getFullYear()); // Anul curent
+  const [month, setMonth] = useState(String(new Date().getMonth() + 1)); // Değerleri string yapmak iyi olur
+  const [year, setYear] = useState(String(new Date().getFullYear()));
 
-  const monthRef = useRef(null);
-  const yearRef = useRef(null);
-
-  // Funcție pentru a trimite cererea către API
   const getTransactionSummary = useCallback(() => {
     if (month && year) {
       dispatch(fetchTransactionsSummary({ month, year }));
-    } else {
-      console.error('Month or year is undefined.');
     }
   }, [dispatch, month, year]);
 
-  // Actualizează luna și anul atunci când dropdown-urile se schimbă
-  const handleMonthChange = event => {
-    setMonth(event.target.value);
-  };
-
-  const handleYearChange = event => {
-    setYear(event.target.value);
-  };
-
+  // Ay veya yıl değiştiğinde yeniden veriyi getir
   useEffect(() => {
-    // Rulează doar după ce luna și anul sunt setate
-    if (month && year) {
-      getTransactionSummary();
-    }
-  }, [getTransactionSummary, month, year]);
+    getTransactionSummary();
+  }, [getTransactionSummary]);
 
   return (
     <div className={styles.dropdownsWrapper}>
-      {/* Dropdown pentru lună */}
+      {/* Ay seçimi */}
       <select
-        onChange={handleMonthChange}
-        ref={monthRef}
-        value={month} // Setăm valoarea curentă
+        className={styles.select}
+        onChange={e => setMonth(e.target.value)}
+        value={month}
       >
         {Months_OPTIONS.map(item => (
           <option key={item.value} value={item.value}>
@@ -53,11 +39,11 @@ const StatisticsDashboard = () => {
         ))}
       </select>
 
-      {/* Dropdown pentru an */}
+      {/* Yıl seçimi */}
       <select
-        onChange={handleYearChange}
-        ref={yearRef}
-        value={year} // Setăm valoarea curentă
+        className={styles.select}
+        onChange={e => setYear(e.target.value)}
+        value={year}
       >
         {YEARS_OPTIONS.map(item => (
           <option key={item} value={item}>

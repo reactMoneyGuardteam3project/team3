@@ -5,6 +5,7 @@ import axiosConfig from '../axiosConfig';
 
 axiosConfig.setAxiosBaseURL();
 
+// Kullanıcı kayıt işlemi
 const register = createAsyncThunk(
   'auth/register',
   async (userData, thunkAPI) => {
@@ -12,56 +13,58 @@ const register = createAsyncThunk(
       const response = await axios.post('/api/auth/sign-up', { ...userData });
       axiosConfig.setAxiosHeader(response.data.token);
 
-      toast.success('Your account has been successfully created !');
-
+      toast.success('Your account has been successfully created!');
       return response.data;
     } catch (error) {
       const errorNotify =
-        error.response.data.message ??
-        `Register failed. We are facing some technical problems with our servers ! `;
-
+        error.response?.data?.message ??
+        'Register failed. We are facing some technical problems with our servers!';
       toast.error(errorNotify);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-const logIn = createAsyncThunk('auth/login', async (userData, thunkAPI) => {
-  try {
-    const response = await axios.post('/api/auth/sign-in', { ...userData });
-    axiosConfig.setAxiosHeader(response.data.token);
+// Kullanıcı giriş işlemi
+const logIn = createAsyncThunk(
+  'auth/login',
+  async (userData, thunkAPI) => {
+    try {
+      const response = await axios.post('/api/auth/sign-in', { ...userData });
+      axiosConfig.setAxiosHeader(response.data.token);
 
-    toast.success('Logged in successfully !');
-    return response.data;
-  } catch (error) {
-    const errorNotify =
-      error.response.data.message ??
-      `Log in failed. We are facing some technical problems with our servers ! `;
-
-    toast.error(errorNotify);
-    return thunkAPI.rejectWithValue(error.message);
+      toast.success('Logged in successfully!');
+      return response.data;
+    } catch (error) {
+      const errorNotify =
+        error.response?.data?.message ??
+        'Log in failed. We are facing some technical problems with our servers!';
+      toast.error(errorNotify);
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
+// Kullanıcı çıkış işlemi
 const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.delete('/api/auth/sign-out');
 
     axiosConfig.clearAxiosHeader();
-    toast.success(`You're logged out !`);
+    toast.success("You're logged out!");
     return;
   } catch (error) {
-    toast.error('Logged out failed. Please, try again !');
+    toast.error('Log out failed. Please, try again!');
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
+// Mevcut kullanıcı bilgilerini alma
 const getUserInfo = createAsyncThunk(
   'auth/getUserInfo',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/api/users/current');
-
       return response.data;
     } catch (error) {
       console.log(error);

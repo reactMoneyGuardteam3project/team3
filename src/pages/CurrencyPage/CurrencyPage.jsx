@@ -27,8 +27,7 @@ const CurrencyPage = () => {
           },
         };
 
-        const fetchTime = new Date().getTime();
-        localStorage.setItem('MONO', JSON.stringify({ data: result, fetchTime }));
+        localStorage.setItem('MONO', JSON.stringify({ data: result, fetchTime: Date.now() }));
         setRates(result);
       } catch (error) {
         console.error('Error fetching Monobank data:', error);
@@ -40,16 +39,13 @@ const CurrencyPage = () => {
     const storedData = localStorage.getItem('MONO');
     if (storedData) {
       const { data, fetchTime } = JSON.parse(storedData);
-      const currentTime = new Date().getTime();
-      if (currentTime - fetchTime < 3600000) {
+      if (Date.now() - fetchTime < 3600000) {
         setRates(data);
         setLoading(false);
-      } else {
-        fetchMonobankRates();
+        return;
       }
-    } else {
-      fetchMonobankRates();
     }
+    fetchMonobankRates();
   }, []);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -84,7 +80,6 @@ const CurrencyPage = () => {
         </tbody>
       </table>
 
-      {/* Gradient ve animasyonlu grafik */}
       {(isMobile || isTablet || isDesktop) && (
         <div className={styles.graphWrapper}>
           {isDesktop && (
@@ -100,29 +95,28 @@ const CurrencyPage = () => {
             viewBox="0 0 480 167"
             fill="none"
           >
-            {/* USD grafiği */}
             <path
               d="M0 100 L100 80 L200 90 L300 60 L400 70 L480 50"
               stroke="#FF868D"
               strokeWidth="2"
-              fill="none"
+              fill="url(#grad1)"
             />
-            {/* EUR grafiği */}
             <path
               d="M0 120 L100 100 L200 110 L300 80 L400 90 L480 70"
               stroke="#5F3DC4"
               strokeWidth="2"
-              fill="none"
+              fill="url(#grad2)"
             />
-            {/* Gradient arkaplan */}
-            <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="167" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#FF868D" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#FF868D" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="grad2" x1="0" y1="0" x2="0" y2="167" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#5F3DC4" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#5F3DC4" stopOpacity="0" />
-            </linearGradient>
+            <defs>
+              <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#FF868D" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#FF868D" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="grad2" x1="0" y1="0" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#5F3DC4" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#5F3DC4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
           </svg>
         </div>
       )}

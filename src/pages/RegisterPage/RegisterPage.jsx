@@ -7,12 +7,12 @@ import LoadingScreen from '../../components/CommonFile/LoadingScreen/LoadingScre
 
 const RegisterPage = () => {
   const isLoading = useSelector(selectIsLoading);
-
   const [forcedLoading, setForcedLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setForcedLoading(false), 2000);
-  }, [forcedLoading]);
+    const timer = setTimeout(() => setForcedLoading(false), 2000);
+    return () => clearTimeout(timer); // Cleanup
+  }, []);
 
   if (forcedLoading) {
     return <LoadingScreen text={'Loading page...'} />;

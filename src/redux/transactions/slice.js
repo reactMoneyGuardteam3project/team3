@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   addTransaction,
-  deteleTransaction,
+  deleteTransaction,
   fetchAllTransactions,
   fetchTransactionsSummary,
   modifyTransaction,
@@ -17,7 +17,7 @@ const initialState = {
 
   summary: [],
 
-  trasactionIdForDelete: '',
+  transactionIdForDelete: '',
   transactionForUpdate: '',
 };
 
@@ -25,10 +25,10 @@ const transactionsSlice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-    setTrasactionIdForDelete: (state, action) => {
-      state.trasactionIdForDelete = action.payload;
+    setTransactionIdForDelete: (state, action) => {
+      state.transactionIdForDelete = action.payload;
     },
-    setTrasactionForUpdate: (state, action) => {
+    setTransactionForUpdate: (state, action) => {
       state.transactionForUpdate = action.payload;
     },
   },
@@ -49,14 +49,14 @@ const transactionsSlice = createSlice({
       })
 
       // * Delete transaction
-      .addCase(deteleTransaction.pending, (state) => {
+      .addCase(deleteTransaction.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deteleTransaction.rejected, (state, action) => {
+      .addCase(deleteTransaction.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(deteleTransaction.fulfilled, (state, action) => {
+      .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         const index = state.items.findIndex((el) => el.id === action.payload);
@@ -108,7 +108,7 @@ const transactionsSlice = createSlice({
   },
 });
 
-export const { setTrasactionIdForDelete, setTrasactionForUpdate } =
+export const { setTransactionIdForDelete, setTransactionForUpdate } =
   transactionsSlice.actions;
 
 export const transactionsReducer = transactionsSlice.reducer;

@@ -102,7 +102,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 const YEARS_OPTIONS = [CURRENT_YEAR, CURRENT_YEAR - 1, CURRENT_YEAR - 2];
 
-const getTrasactionCategoryColor = category => {
+const getTransactionCategoryColor = category => {
   switch (category) {
     case 'Main expenses':
       return 'rgba(254, 208, 87, 1)';
@@ -146,5 +146,5 @@ export {
   formatData,
   Months_OPTIONS,
   YEARS_OPTIONS,
-  getTrasactionCategoryColor,
+  getTransactionCategoryColor,
 };

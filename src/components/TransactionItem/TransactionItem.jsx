@@ -6,67 +6,73 @@ import {
 } from '../../constants/TransactionConstants';
 import { useDispatch } from 'react-redux';
 import {
-  setTrasactionForUpdate,
-  setTrasactionIdForDelete,
+  setTransactionForUpdate,
+  setTransactionIdForDelete,
 } from '../../redux/transactions/slice';
 
 const TransactionItem = ({ transaction, openDeleteModal, openEditModal }) => {
-  const { type, categoryId, comment, amount, transactionDate } = transaction;
-
   const dispatch = useDispatch();
 
+  const { id, type, categoryId, comment, amount, transactionDate } = transaction;
+
   const handleDeleteClick = () => {
+    dispatch(setTransactionIdForDelete(id));
     openDeleteModal();
-    dispatch(setTrasactionIdForDelete(transaction.id));
   };
 
   const handleEditClick = () => {
+    dispatch(setTransactionForUpdate({ ...transaction }));
     openEditModal();
-    dispatch(setTrasactionForUpdate({ ...transaction }));
   };
 
-  let textClass = '';
-  let borderClass = '';
+  const isIncome = type === 'INCOME';
+  const isExpense = type === 'EXPENSE';
 
-  if (type === 'INCOME') {
-    textClass = styles.incomeText;
-    borderClass = styles.incomeBorder;
-  } else if (type === 'EXPENSE') {
-    textClass = styles.expenseText;
-    borderClass = styles.expenseBorder;
-  }
+  const textClass = isIncome
+    ? styles.incomeText
+    : isExpense
+    ? styles.expenseText
+    : '';
+  const borderClass = isIncome
+    ? styles.incomeBorder
+    : isExpense
+    ? styles.expenseBorder
+    : '';
 
   return (
-    <li className={`${styles.TransactionItem} ${borderClass}`}>
-      <div className={`${styles.row} ${styles.firstRow}`}>
-        <span className={styles.fixData}>Date</span>
-        <span className={styles.dynamicData}>
-          {formatData(transactionDate)}
-        </span>
+    <li className={`${styles.transactionItem} ${borderClass}`}>
+      <div className={styles.row}>
+        <span className={styles.label}>Date</span>
+        <span className={styles.value}>{formatData(transactionDate)}</span>
       </div>
-      <div className={`${styles.row} ${styles.secondRow}`}>
-        <span className={styles.fixData}>Type</span>
-        <span className={styles.dynamicData}>
-          {type === 'INCOME' ? '+' : '-'}
-        </span>
+
+      <div className={styles.row}>
+        <span className={styles.label}>Type</span>
+        <span className={styles.value}>{isIncome ? '+' : '-'}</span>
       </div>
-      <div className={`${styles.row} ${styles.thirdRow}`}>
-        <span className={styles.fixData}>Category</span>
-        <span className={styles.dynamicData}>
+
+      <div className={styles.row}>
+        <span className={styles.label}>Category</span>
+        <span className={styles.value}>
           {getTransactionCategory(categoryId)}
         </span>
       </div>
-      <div className={`${styles.row} ${styles.forthRow}`}>
-        <span className={styles.fixData}>Comment</span>
-        <span className={styles.dynamicData}>{comment}</span>
+
+      <div className={styles.row}>
+        <span className={styles.label}>Comment</span>
+        <span className={styles.value}>{comment || '-'}</span>
       </div>
-      <div className={`${styles.row} ${styles.fifthRow}`}>
-        <span className={styles.fixData}>Sum</span>
-        <span className={`${styles.dynamicData} ${textClass}`}>
-          {type === 'INCOME' ? amount : amount * -1}
+
+      <div className={styles.row}>
+        <span className={styles.label}>Sum</span>
+        <span className={`${styles.value} ${textClass}`}>
+          {isIncome
+            ? amount.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            : (amount * -1).toLocaleString('en-US', { minimumFractionDigits: 2 })}
         </span>
       </div>
-      <div className={`${styles.row} ${styles.sixthRow}`}>
+
+      <div className={`${styles.row} ${styles.actions}`}>
         <button
           type="button"
           className={styles.deleteButton}
@@ -74,15 +80,16 @@ const TransactionItem = ({ transaction, openDeleteModal, openEditModal }) => {
         >
           Delete
         </button>
+
         <button
-          className={styles.editButton}
           type="button"
+          className={styles.editButton}
           onClick={handleEditClick}
         >
           <svg className={styles.editIcon}>
             <use href={`${icons}#icon-edit`}></use>
           </svg>
-          <span className={styles.editText}>Edit</span>
+          <span>Edit</span>
         </button>
       </div>
     </li>

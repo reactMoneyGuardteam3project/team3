@@ -1,38 +1,40 @@
 import { useEffect } from 'react';
-import styles from './ModalFooter.module.css';
 import { useMediaQuery } from 'react-responsive';
+import 'animate.css';
+import styles from './ModalFooter.module.css';
 import Logo from '../CommonFile/Logo/Logo';
 import FormButton from '../CommonFile/FormButton/FormButton';
-import 'animate.css';
 
 const ModalFooter = ({ closeModal }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
-    const addCloseEvent = event => {
-      event.key === 'Escape' && closeModal();
+    const handleKeyDown = event => {
+      if (event.key === 'Escape') closeModal();
     };
-    document.addEventListener('keydown', addCloseEvent);
+
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.body.style.overflow = 'auto';
-      document.removeEventListener('keydown', addCloseEvent);
+      document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [closeModal]); // Added closeModal to the dependency array
+  }, [closeModal]); // ✅ dependency array doğru kullanıldı
 
-  const closeOnClickOutside = event => {
-    event.currentTarget === event.target && closeModal();
+  const handleBackdropClick = event => {
+    if (event.currentTarget === event.target) closeModal();
   };
 
-  const screenCondition = useMediaQuery({ query: '(min-width: 768px)' });
+  const isTabletOrLarger = useMediaQuery({ query: '(min-width: 768px)' });
   const animation = 'animate__animated animate__fadeInDown animate__slow';
 
   return (
-    <div className={styles.modalFooter} onClick={closeOnClickOutside}>
+    <div className={styles.modalFooter} onClick={handleBackdropClick}>
       <div className={styles.modalContent}>
-        {screenCondition && <Logo variant={'formLogo'} />}
+        {isTabletOrLarger && <Logo variant="formLogo" />}
 
         <h2>Team</h2>
+
         <ul className={styles.teamList}>
           <li>
             <a
@@ -67,7 +69,7 @@ const ModalFooter = ({ closeModal }) => {
               target="_blank"
               rel="noreferrer"
             >
-              Doğan Demirbaş 
+              Doğan Demirbaş
             </a>
           </li>
           <li>
@@ -92,10 +94,10 @@ const ModalFooter = ({ closeModal }) => {
 
         <div className={`${styles.thanksBtn} ${animation}`}>
           <FormButton
-            type={'button'}
-            text={'Thank You'}
-            variant={'whiteButtton'}
-            handlerFunction={() => closeModal()}
+            type="button"
+            text="Thank You"
+            variant="whiteButton" 
+            handlerFunction={closeModal}
           />
         </div>
       </div>

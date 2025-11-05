@@ -62,7 +62,7 @@ export const fetchAllTransactions = createAsyncThunk(
 )
 
 // *Delete transaction //
-export const deteleTransaction = createAsyncThunk(
+export const deleteTransaction = createAsyncThunk(
   'transactions/deleteTransaction',
   async (transactionId, thunkAPI) => {
     try {

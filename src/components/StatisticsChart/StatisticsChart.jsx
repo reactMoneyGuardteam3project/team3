@@ -1,8 +1,6 @@
 import 'animate.css';
-
-import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
-
+import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import styles from './StatisticsChart.module.css';
 import {
@@ -10,36 +8,34 @@ import {
   selectIsLoading,
   selectTransactionsSummary,
 } from '../../redux/transactions/selectors';
-import { getTrasactionCategoryColor } from '../../constants/TransactionConstants';
+import { getTransactionCategoryColor } from '../../constants/TransactionConstants';
 import LoadingSpinner from '../CommonFile/LoadingSpinner/Loader';
 
 const StatisticsChart = () => {
   const isLoading = useSelector(selectIsLoading);
-
-  const balanceForSpecificPeriod = useSelector(
-    selectTransactionsSummary
-  )?.periodTotal;
-
-  function formatNumber(balanceAmount) {
-    return balanceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  }
-
+  const transactionsSummary = useSelector(selectTransactionsSummary);
   const filteredCategories = useSelector(selectFilteredCategories);
 
-  const chartLabels =
-    filteredCategories?.length > 0
-      ? filteredCategories?.map(item => item.name)
-      : ['There is no data for selected date'];
+  const balanceForSpecificPeriod = transactionsSummary?.periodTotal ?? 0;
 
-  const chartValues =
-    filteredCategories?.length > 0
-      ? filteredCategories?.map(item => item.total * -1)
-      : [100];
+  // Sayıyı binlik ayraçlarla formatlama
+  const formatNumber = amount =>
+    amount.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
-  const chartBackgroundColors =
-    filteredCategories?.length > 0
-      ? filteredCategories?.map(item => getTrasactionCategoryColor(item.name))
-      : ['rgba(255, 255, 255, 0.6'];
+  // Chart data hazırlama
+  const hasData = filteredCategories?.length > 0;
+
+  const chartLabels = hasData
+    ? filteredCategories.map(item => item.name)
+    : ['No data available'];
+
+  const chartValues = hasData
+    ? filteredCategories.map(item => item.total * -1)
+    : [100];
+
+  const chartBackgroundColors = hasData
+    ? filteredCategories.map(item => getTransactionCategoryColor(item.name))
+    : ['rgba(255, 255, 255, 0.6)']; // eksik parantez kapandı ✅
 
   const chartData = {
     labels: chartLabels,
@@ -49,7 +45,6 @@ const StatisticsChart = () => {
         backgroundColor: chartBackgroundColors,
         borderWidth: 0,
         hoverOffset: 5,
-        // hoverBorderWidth: 1,
       },
     ],
   };
@@ -57,22 +52,16 @@ const StatisticsChart = () => {
   const chartOptions = {
     cutout: '70%',
     plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        // enabled: false,
-      },
+      legend: { display: false },
+      tooltip: { enabled: true },
     },
     elements: {
-      arc: {
-        hoverOffset: 4,
-      },
+      arc: { hoverOffset: 4 },
     },
   };
 
-  const textAnimatioClasses =
-    'animate__animated  animate__zoomIn animate__slow';
+  const textAnimationClasses =
+    'animate__animated animate__zoomIn animate__slow';
 
   return (
     <div className={styles.chartContainer}>
@@ -81,11 +70,8 @@ const StatisticsChart = () => {
       ) : (
         <>
           <Doughnut data={chartData} options={chartOptions} />
-          <div className={`${styles.balance} ${textAnimatioClasses}`}>
-            ${'     '}
-            {balanceForSpecificPeriod
-              ? formatNumber(balanceForSpecificPeriod.toFixed(2))
-              : '0.00'}
+          <div className={`${styles.balance} ${textAnimationClasses}`}>
+          ₴ {formatNumber(balanceForSpecificPeriod)}
           </div>
         </>
       )}
