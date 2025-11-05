@@ -3,7 +3,7 @@ import Logo from '../CommonFile/Logo/Logo';
 import icons from '../../images/icons/sprite.svg';
 import { useState } from 'react';
 import LogOutModal from '../LogOutModal/LogOutModal';
-import { useAuth } from 'hooks';
+import { useAuth } from '../../hooks';
 import { createPortal } from 'react-dom';
 
 const Header = () => {

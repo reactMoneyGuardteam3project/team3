@@ -5,16 +5,16 @@ import { lazy } from 'react';
 import SharedLayout from './SharedLayout/SharedLayout';
 import Notify from './CommonFile/Notify/Notify';
 
-import RestrictedLoginPage from 'pages/LoginPage/RestrictedLoginPage';
-import RestrictedRegisterPage from 'pages/RegisterPage/RestrictedRegisterPage';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+import RestrictedLoginPage from '../pages/LoginPage/RestrictedLoginPage';
+import RestrictedRegisterPage from '../pages/RegisterPage/RestrictedRegisterPage';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
-const HomePage = lazy(() => import('pages/HomePage/RestrictedHomePage'));
+const HomePage = lazy(() => import('../pages/HomePage/RestrictedHomePage'));
 const StatisticsPage = lazy(() =>
-  import('pages/StatisticsPage/RestrictedStatisticsPage')
+  import('../pages/StatisticsPage/RestrictedStatisticsPage')
 );
 const CurrencyPage = lazy(() =>
-  import('pages/CurrencyPage/RestrictedCurrencyPage')
+  import('../pages/CurrencyPage/RestrictedCurrencyPage')
 );
 
 const App = () => {

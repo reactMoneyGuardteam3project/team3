@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
-import TransactionsList from 'components/TransactionsList/TransactionsList';
-import TransactionsTable from 'components/TransactionsTable/TransactionsTable';
+import ButtonAddTransactions from '../../components/ButtonAddTransactions/ButtonAddTransactions';
+import TransactionsList from '../../components/TransactionsList/TransactionsList';
+import TransactionsTable from '../../components/TransactionsTable/TransactionsTable';
 import { useMediaQuery } from 'react-responsive';
 import styles from './HomePage.module.css';
 
@@ -11,10 +11,10 @@ import { selectAllTransactions } from '../../redux/transactions/selectors';
 import { fetchAllTransactions } from '../../redux/transactions/operations';
 
 import { createPortal } from 'react-dom';
-import ModalDeleteTransaction from 'components/ModalDeleteTransaction/ModalDeleteTransaction';
-import ModalAddTransactionNew from 'components/ModalAddTransaction/ModalAddTransaction';
-import ModalEditTransaction from 'components/ModalEditTransaction/ModalEditTransaction';
-import Balance from 'components/Balance/Balance';
+import ModalDeleteTransaction from '../../components/ModalDeleteTransaction/ModalDeleteTransaction';
+import ModalAddTransactionNew from '../../components/ModalAddTransaction/ModalAddTransaction';
+import ModalEditTransaction from '../../components/ModalEditTransaction/ModalEditTransaction';
+import Balance from '../../components/Balance/Balance';
 
 const HomePage = () => {
   const dispatch = useDispatch();

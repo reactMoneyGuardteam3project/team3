@@ -36,7 +36,7 @@
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-  background: url('../../images/backgrounds/register-bg-d.jpg') no-repeat;
+  background: url('../../images/backgrounds/background-register.jpg') no-repeat;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: cover;

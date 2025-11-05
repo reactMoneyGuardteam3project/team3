@@ -1,169 +1,135 @@
-body .container {
-  padding-left: 0px;
-  padding-right: 0px;
+/* CurrencyPage.module.css */
+
+.pageWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
 }
 
-.tablewrapper {
-  position: relative;
-  background-color: rgba(74, 86, 226, 0.1);
-  padding-top: 25px;
-  width: 280px;
-  height: 220px;
-  margin: 0 auto;
-
-  @media only screen and (min-width: 768px) {
-    min-width: 336px;
-    margin: 0;
-  }
-
-  @media only screen and (min-width: 1280px) {
-    width: 100%;
-    max-height: 395px;
-    height: 350px;
-  }
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .table {
-  color: white;
-
   width: 100%;
-  font-size: 16px;
-  line-height: normal;
   border-collapse: collapse;
-  padding-left: 20px;
+  margin-bottom: 40px;
+  background: #1E1E2F;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.tablehead {
-  background: rgba(255, 255, 255, 0.2);
+.table th,
+.table td {
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.table th {
+  background-color: #2C2C3E;
   font-weight: 600;
+  font-size: 1rem;
 }
 
-.tableheader {
-  padding-top: 13px;
-  padding-bottom: 13px;
-  width: 33%;
-  padding-left: 20px;
-
-  @media only screen and (min-width: 1280px) {
-    &:first-child {
-      padding-left: 62px;
-    }
-    &:last-child {
-      padding-right: 111px;
-    }
-  }
+.table td {
+  font-size: 0.95rem;
+  border-top: 1px solid #3A3A50;
 }
 
-.tabledata {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  width: 30%;
-  padding-left: 25px;
-
-  &:last-child {
-    padding-left: 38px;
-  }
-
-  @media only screen and (min-width: 1280px) {
-    text-align: center;
-
-    &:first-child {
-      padding-left: 62px;
-    }
-    &:last-child {
-      padding-right: 131px;
-    }
-  }
-}
-
-.svg {
-  position: absolute;
-  width: 100%;
-}
-
-.tablegraph {
+.graphWrapper {
   position: relative;
   width: 100%;
-  top: -6px;
-
-  &::before,
-  &::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #563eaf;
-    border: solid 1px #ff868d;
-    z-index: 1000;
-  }
-
-  &::before {
-    z-index: 1;
-    left: 33px;
-    top: 23px;
-  }
-
-  &::after {
-    z-index: auto;
-    left: 211px;
-    top: 2px;
-  }
-
-  @media only screen and (min-width: 768px) {
-    &::before {
-      left: 42px;
-      top: 21px;
-    }
-    &::after {
-      left: 254px;
-      top: -2px;
-    }
-  }
-
-  @media only screen and (min-width: 1280px) {
-    &::before {
-      left: 58px;
-      top: 29px;
-      width: 9px;
-      height: 9px;
-    }
-    &::after {
-      left: 364px;
-      top: -4px;
-      width: 9px;
-      height: 9px;
-    }
-    top: 26px;
-  }
+  margin-top: 20px;
 }
 
-.svggradient {
+.desktopRates {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.usd,
+.eur {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #FF868D, #FF5E79);
+  box-shadow: 0 6px 12px rgba(255, 134, 141, 0.5);
+}
+
+.eur {
+  background: linear-gradient(135deg, #5F3DC4, #7B5DE7);
+  box-shadow: 0 6px 12px rgba(95, 61, 196, 0.5);
+}
+
+.svgGraph {
   width: 100%;
-  position: absolute;
-  top: 6px;
+  height: 200px;
+}
 
-  @media only screen and (min-width: 1280px) {
-    top: 20px;
+/* Responsive */
+@media (max-width: 767px) {
+
+  .usd,
+  .eur {
+    font-size: 1.2rem;
+    padding: 8px 16px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 10px;
+    font-size: 0.85rem;
   }
 }
 
-.gbp,
-.eur {
-  position: absolute;
-  color: var(--dashboard-text, #ff868d);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: normal;
+@media (min-width: 768px) and (max-width: 1279px) {
+
+  .usd,
+  .eur {
+    font-size: 1.3rem;
+    padding: 9px 18px;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
 }
 
-.gbp {
-  left: 48px;
-  top: 8px;
+/* Loading state */
+.loading {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #fff;
+  padding: 40px 0;
 }
 
-.eur {
-  left: 352px;
-  top: -27px;
+/* Animation */
+.animate__animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animate__fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

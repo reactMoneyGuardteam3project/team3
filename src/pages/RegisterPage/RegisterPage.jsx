@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectIsLoading } from '../../redux/auth/selectors';
 import RegisterForm from '../../components/RegistrationForm/RegistrationForm';
-import LoadingScreen from 'components/common/LoadingScreen/LoadingScreen';
+import LoadingScreen from '../../components/CommonFile/LoadingScreen/LoadingScreen';
 
 const RegisterPage = () => {
   const isLoading = useSelector(selectIsLoading);
