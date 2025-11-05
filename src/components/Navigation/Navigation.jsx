@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navigation.module.css';
-import icons from '../../images/icons/sprite.svg';
+import homeIcon from '../../images/icons/home.svg';
+import statisticIcon from '../../images/icons/statistic.svg';
+import currencyIcon from '../../images/icons/currency.svg';
+
 
 const Navigation = () => {
   const getClassName = (isActive, additionalClass) =>
@@ -17,7 +20,7 @@ const Navigation = () => {
       >
         <div className={styles.linkIcon}>
           <svg className={styles.homeIcon}>
-            <use href={`${icons}#icon-home`}></use>
+            <use href={`${homeIcon}#icon-home`}></use>
           </svg>
         </div>
         <span className={styles.linkText}>Home</span>
@@ -28,8 +31,8 @@ const Navigation = () => {
         className={({ isActive }) => getClassName(isActive, '')}
       >
         <div className={styles.linkIcon}>
-          <svg className={styles.statisticsIcon}>
-            <use href={`${icons}#icon-statistics`}></use>
+          <svg className={styles.statisticIcon}>
+            <use href={`${statisticIcon}#icon-statistic`}></use>
           </svg>
         </div>
         <span className={styles.linkText}>Statistics</span>
@@ -43,7 +46,7 @@ const Navigation = () => {
       >
         <div className={styles.linkIcon}>
           <svg className={styles.currencyIcon}>
-            <use href={`${icons}#icon-currency`}></use>
+            <use href={`${currencyIcon}#icon-currency`}></use>
           </svg>
         </div>
         <span className={styles.linkText}>Currency</span>

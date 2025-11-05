@@ -7,11 +7,14 @@ import App from './components/App';
 import { store, persistor } from './redux/store';
 import './index.css';
 
+// Use PUBLIC_URL (CRA) if set, otherwise keep existing repo basename as fallback.
+const basename = process.env.PUBLIC_URL || '/reactMoneyGuardteam3project/team3';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/reactMoneyGuardteam3project/team3">
+        <BrowserRouter basename={basename}>
           <App />
         </BrowserRouter>
       </PersistGate>

@@ -21,7 +21,7 @@ function Balance() {
   return (
     <div className={styles.balance}>
       <h3>Your balance</h3>
-      <p>$ {balance ? formatNumber(balance.toFixed(2)) : '0.00'}</p>
+      <p>₴ {balance ? formatNumber(balance.toFixed(2)) : '0.00'}</p>
     </div>
   );
 }

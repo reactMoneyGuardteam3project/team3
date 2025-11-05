@@ -18,6 +18,12 @@ npm start
 
 ## Geliştirme Kuralları
 
+## Environment variables
+
+Create a `.env` file in the root with:
+REACT_APP_API_BASE_URL=https://wallet.b.goit.study
+REACT_APP_MONOBANK_URL=https://api.monobank.ua/bank/currency
+
 ### Branch Yapısı
 
 - Branch'ler: [dev-isim] formatında oluşturulmalı

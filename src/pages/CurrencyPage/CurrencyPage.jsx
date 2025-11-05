@@ -18,12 +18,12 @@ const CurrencyPage = () => {
 
         const result = {
           USD: {
-            buy: usdRate?.rateBuy?.toFixed(2) || 'N/A',
-            sell: usdRate?.rateSell?.toFixed(2) || 'N/A',
+            purchase: usdRate?.rateBuy?.toFixed(2) || 'N/A',
+            sale: usdRate?.rateSell?.toFixed(2) || 'N/A',
           },
           EUR: {
-            buy: eurRate?.rateBuy?.toFixed(2) || 'N/A',
-            sell: eurRate?.rateSell?.toFixed(2) || 'N/A',
+            purchase: eurRate?.rateBuy?.toFixed(2) || 'N/A',
+            sale: eurRate?.rateSell?.toFixed(2) || 'N/A',
           },
         };
 
@@ -73,13 +73,13 @@ const CurrencyPage = () => {
         <tbody>
           <tr>
             <td>USD</td>
-            <td>{rates.USD.buy}</td>
-            <td>{rates.USD.sell}</td>
+            <td>{rates.USD.purchase}</td>
+            <td>{rates.USD.sale}</td>
           </tr>
           <tr>
             <td>EUR</td>
-            <td>{rates.EUR.buy}</td>
-            <td>{rates.EUR.sell}</td>
+            <td>{rates.EUR.purchase}</td>
+            <td>{rates.EUR.sale}</td>
           </tr>
         </tbody>
       </table>
@@ -89,8 +89,8 @@ const CurrencyPage = () => {
         <div className={styles.graphWrapper}>
           {isDesktop && (
             <div className={styles.desktopRates}>
-              <div className={styles.usd}>{rates.USD.buy}</div>
-              <div className={styles.eur}>{rates.EUR.buy}</div>
+              <div className={styles.usd}>{rates.USD.purchase}</div>
+              <div className={styles.eur}>{rates.EUR.purchase}</div>
             </div>
           )}
 
