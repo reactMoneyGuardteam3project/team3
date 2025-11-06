@@ -8,7 +8,7 @@ import { store, persistor } from './redux/store';
 import './index.css';
 
 // Use PUBLIC_URL (CRA) if set, otherwise keep existing repo basename as fallback.
-const basename = process.env.PUBLIC_URL || '/reactMoneyGuardteam3project/team3';
+const basename = process.env.PUBLIC_URL || '/';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
