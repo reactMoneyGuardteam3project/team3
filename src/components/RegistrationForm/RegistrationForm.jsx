@@ -67,7 +67,7 @@ const RegistrationForm = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, values, handleChange }) => (
           <Form>
             <Logo variant="formLogo" />
 
@@ -99,7 +99,8 @@ const RegistrationForm = () => {
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
-                onChange={e => setPassword(e.target.value)}
+                value={values.password}
+                onChange={handleChange}
               />
               {!!password && <PasswordStrength password={password} />}
               <ErrorMessage name="password" component="div" />
@@ -124,7 +125,8 @@ const RegistrationForm = () => {
                 type={showConfirmPassword ? 'text' : 'password'}
                 name="confirmPassword"
                 placeholder="Confirm password"
-                onChange={e => setConfirmPassword(e.target.value)}
+                value={values.confirmPassword}
+                onChange={handleChange}
               />
               <ErrorMessage name="confirmPassword" component="div" />
 
